@@ -12,10 +12,9 @@ def hello():
     if not lat or not long:
         return "No lat long provided"
     print('Starting execution')
-    print(execute_script(lat, long))
+    tid = execute_script(lat, long)
     print('execution complete')
-    ret_string = lat + ' : ' + long
-    return ret_string
+    return { "tid" : tid}
 
 
 if __name__ == "__main__":

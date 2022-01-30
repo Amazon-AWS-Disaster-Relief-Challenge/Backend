@@ -11,8 +11,8 @@ output="out.json"
 
 def execute_script(lat, lon):
     msg = {}
-    msg["lat"] = lat
-    msg["lon"] = lon
+    msg["lat"] = float(lat)
+    msg["lon"] = float(lon)
     msg["v_thr"] = 0.05
     msg["e_thr"] = 0.01
     msg["snap_dist"] = 15
@@ -47,3 +47,4 @@ def execute_script(lat, lon):
     
     tid = graph["taskid"]
     print("please check intermediate results at http://sat2graph:8010/t%d/" % tid)
+    return tid
