@@ -1,0 +1,15 @@
+version: '3.5' # We use version 3.5 syntax
+services: # Here we define our service(s)
+    web:
+      build: . # Location of the dockerfile
+      ports:
+        - '5001:5001'
+      volumes: # Volume binding
+        - '.:/app' 
+    sat2graph:
+      image: songtaohe/sat2graph_inference_server_cpu:latest
+      ports:
+        - '8010:8000'
+        - '8011:8001'
+      environment: 
+        NAME: sat2graph
