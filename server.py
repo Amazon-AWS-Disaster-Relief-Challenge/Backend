@@ -1,7 +1,7 @@
 import re
 from flask import Flask
 from flask import request
-from Sat2Graph.docker.scripts.infer_mapbox_input import execute_script
+from infer_mapbox_input import execute_script
 
 app = Flask(__name__)
 
