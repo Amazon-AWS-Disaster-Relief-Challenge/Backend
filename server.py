@@ -53,7 +53,7 @@ def getImageMapBox(latitude, longitude):
     )
     if r.status_code == 200:
         got_post_disaster_image = True
-        with open(f"./inference/post_disaster.png", "wb") as f:
+        with open(f"./post_disaster.png", "wb") as f:
             r.raw.decode_content = True
             sh.copyfileobj(r.raw, f)
     else:
