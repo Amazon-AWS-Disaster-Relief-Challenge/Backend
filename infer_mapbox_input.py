@@ -34,17 +34,12 @@ def execute_script(lat, lon):
 
     x = requests.post(url, data = json.dumps(msg))
     graph = json.loads(x.text) 
+    print(graph)
+
     if graph["success"] == 'false':
         print("unknown error")
         return "Some error Occured"
-
-    print(graph)
-    
-    if osm_only != 0:
-        json.dump(graph["osmgraph"], open(output, "w"), indent=2)
-    else:
-        json.dump(graph["graph"]["graph"][0], open(output, "w"), indent=2)
     
     tid = graph["taskid"]
-    print("please check intermediate results at http://sat2graph:8010/t%d/" % tid)
+    print("please check intermediate results at http://localhost:8010/t%d/" % tid)
     return [tid, graph["graph"]["graph"][0]]
