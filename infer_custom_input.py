@@ -45,12 +45,9 @@ if __name__ == "__main__":
     msg["stride"] = 176;
     msg["nPhase"] = 1;
     if args.model_id == 3:
-        msg["nPhase"] = 5;
-    
-    json.dump(msg, open("dbg.json","w"), indent=2)
-    
+        msg["nPhase"] = 5;    
 
-    url = "http://localhost:8011"
+    url = "http://sat2graph:8011"
 
     x = requests.post(url, data = json.dumps(msg))
     

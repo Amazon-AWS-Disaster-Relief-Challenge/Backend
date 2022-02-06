@@ -47,4 +47,4 @@ def execute_script(lat, lon):
     
     tid = graph["taskid"]
     print("please check intermediate results at http://sat2graph:8010/t%d/" % tid)
-    return tid
+    return [tid, graph["graph"]["graph"][0]]

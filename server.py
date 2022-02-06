@@ -1,3 +1,4 @@
+from cmath import exp
 import imp
 import mercantile
 import requests
@@ -7,6 +8,8 @@ from infer_mapbox_input import execute_script
 import shutil as sh
 import os
 import json
+import subprocess
+
 
 app = Flask(__name__)
 
@@ -69,13 +72,24 @@ def hello():
     if not lat or not long:
         return "No lat long provided"
     print('Starting execution')
-    # tid = execute_script(lat, long)
+    o = execute_script(lat, long)
     # outJson, tid = get_outJson(getImageMapBox(lat, long))
-    getImageMapBox(lat, long)
-    a = os.system("python infer_custom_input.py -input pre_disaster.png -gsd 0.5 -model_id 2 -output out.json")
-    print('execution complete')
-    outJson = json.load(open('out.json'))
-    return json.dumps(outJson)
+    # getImageMapBox(lat, long)
+    # cmd = "python infer_custom_input.py -input pre_disaster.png -gsd 0.5 -model_id 2 -output out.json"
+    # p = subprocess.Popen(cmd, stdout=subprocess.PIPE, shell=True)
+    # out, err = p.communicate() 
+    # p.wait()
+    # print('execution complete ', out.decode('utf-8'))
+    # print(err)
+    try:
+        # outJson = json.load(open('out.json'))
+        # return json.dumps(outJson)
+        return {
+            "tid": o[0],
+            "out": o[1]
+        }
+    except:
+        return "Unable to get out.json"
 
 
 if __name__ == "__main__":
